@@ -1,18 +1,5 @@
 {
-  "users": [
-    {
-      "id": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
-      "nome": "Gabryel Gomes Cerqueira",
-      "email": "gabryelgomes010@gmail.com",
-      "senhaHash": "f25c527a3536f0d772b5bf7b2dde5fd6:0c2650602b507eef5b55cfb377938293053c538005869e9ee76381d9d5a5a3ffbc0025eb0d14edd4c7f7e849cf032d8cdb5eabfdadc23db3ddd458257640f7ec",
-      "perfil": {
-        "peso": 79,
-        "altura": 1.75,
-        "idade": 19
-      },
-      "createdAt": "2026-08-11T22:31:59.029Z"
-    }
-  ],
+  "users": [],
   "sessions": [
     {
       "token": "60545dc3-4ab7-445e-bbc6-04af77a4a467",
