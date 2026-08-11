@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "id": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "nome": "Gabryel Gomes Cerqueira",
+      "email": "gabryelgomes010@gmail.com",
+      "senhaHash": "f25c527a3536f0d772b5bf7b2dde5fd6:0c2650602b507eef5b55cfb377938293053c538005869e9ee76381d9d5a5a3ffbc0025eb0d14edd4c7f7e849cf032d8cdb5eabfdadc23db3ddd458257640f7ec",
+      "perfil": {
+        "peso": 79,
+        "altura": 1.75,
+        "idade": 19
+      },
+      "createdAt": "2026-08-11T22:31:59.029Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "60545dc3-4ab7-445e-bbc6-04af77a4a467",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-08-11T22:32:21.530Z"
+    },
+    {
+      "token": "88a18213-4e79-424f-ba18-28bbbea11895",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-08-11T22:47:43.023Z"
+    },
+    {
+      "token": "d4d2a8a2-c76f-4b0e-ba2b-57594c5cd40f",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-08-11T22:48:12.503Z"
+    },
+    {
+      "token": "e44e5392-31a4-46fc-a4b0-0fd506c83cc5",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-08-11T22:48:20.158Z"
+    },
+    {
+      "token": "ab89f67a-d76a-4f5b-824e-829068661d5c",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-08-11T22:53:16.381Z"
+    }
+  ],
+  "workouts": [
+    {
+      "id": "41a313cb-3680-47ba-904b-d99e8cd94cb6",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "titulo": "Segunda de Peito",
+      "descricao": "treinar",
+      "grupoMuscular": "Peito e Triceps",
+      "duracaoMin": 60,
+      "intensidade": "moderado",
+      "createdAt": "2026-08-11T22:48:49.321Z"
+    }
+  ],
+  "extensions": [
+    {
+      "id": "water-tracker-pro",
+      "nome": "Water Tracker Pro",
+      "descricao": "Monitora hidratação diária e envia lembretes inteligentes.",
+      "categoria": "Saúde"
+    },
+    {
+      "id": "sleep-monitor-plus",
+      "nome": "Sleep Monitor Plus",
+      "descricao": "Avalia qualidade do sono e gera recomendações semanais.",
+      "categoria": "Hábitos"
+    },
+    {
+      "id": "macro-balancer",
+      "nome": "Macro Balancer",
+      "descricao": "Calcula e acompanha macros com base nos seus objetivos.",
+      "categoria": "Nutrição"
+    }
+  ],
+  "userExtensions": [
+    {
+      "id": "82ce1780-b9d0-4c36-9a0b-8404edc4c31c",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "extensionId": "water-tracker-pro",
+      "installedAt": "2026-08-11T22:48:00.090Z"
+    },
+    {
+      "id": "6de1d624-dd3c-46d3-b362-f1d6c4eedb92",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "extensionId": "sleep-monitor-plus",
+      "installedAt": "2026-08-11T22:48:01.125Z"
+    },
+    {
+      "id": "1a61beab-bd79-4c18-b6e4-28aa1aaac163",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "extensionId": "macro-balancer",
+      "installedAt": "2026-08-11T22:48:01.568Z"
+    }
+  ]
+}
