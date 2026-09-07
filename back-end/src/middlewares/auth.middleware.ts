@@ -22,3 +22,16 @@ export async function requireAuth(req: Request, _res: Response, next: NextFuncti
   (req as AuthedRequest).userId = session.userId;
   next();
 }
+
+export async function requireAdmin(req: Request, _res: Response, next: NextFunction): Promise<void> {
+  const userId = (req as AuthedRequest).userId;
+  const db = await readDatabase();
+  const user = db.users.find((u) => u.id === userId);
+
+  if (!user || user.role !== 'admin') {
+    next(new Error('AUTH_FORBIDDEN'));
+    return;
+  }
+
+  next();
+}

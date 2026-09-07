@@ -54,3 +54,27 @@ export async function installExtension(req: Request, res: Response): Promise<voi
 
   res.status(201).json({ message: `Extensão ${extension.nome} instalada com sucesso` });
 }
+
+export async function uninstallExtension(req: Request, res: Response): Promise<void> {
+  const parsed = installExtensionSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.issues[0]?.message ?? 'Dados inválidos' });
+    return;
+  }
+
+  const userId = (req as AuthedRequest).userId;
+  const db = await readDatabase();
+  const index = db.userExtensions.findIndex(
+    (item) => item.userId === userId && item.extensionId === parsed.data.extensionId,
+  );
+
+  if (index === -1) {
+    res.status(404).json({ error: 'Extensão não está instalada' });
+    return;
+  }
+
+  db.userExtensions.splice(index, 1);
+  await writeDatabase(db);
+
+  res.json({ message: 'Extensão desinstalada com sucesso' });
+}

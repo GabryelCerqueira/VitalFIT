@@ -7,6 +7,10 @@ export function errorHandler(error, _req, res, _next) {
         res.status(401).json({ error: 'Token inválido' });
         return;
     }
+    if (error instanceof Error && error.message === 'AUTH_FORBIDDEN') {
+        res.status(403).json({ error: 'Acesso negado: privilégios de administrador necessários' });
+        return;
+    }
     console.error(error);
     res.status(500).json({ error: 'Erro interno do servidor' });
 }

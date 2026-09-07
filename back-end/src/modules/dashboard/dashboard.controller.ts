@@ -16,6 +16,25 @@ function createProgress(workouts: Workout[], user: User): { progresso: number; o
   return { progresso: calorias, objetivo, percentual };
 }
 
+function getGreeting(name: string): string {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return `Bom dia, ${name}!`;
+  if (hour >= 12 && hour < 18) return `Boa tarde, ${name}!`;
+  return `Boa noite, ${name}!`;
+}
+
+function calculateImc(peso: number, altura: number): { valor: number; classificacao: string } {
+  if (!altura || altura <= 0) return { valor: 0, classificacao: 'Não informado' };
+  const imc = Number((peso / (altura * altura)).toFixed(1));
+  let classificacao = 'Normal';
+  if (imc < 18.5) classificacao = 'Abaixo do peso';
+  else if (imc < 25) classificacao = 'Peso ideal';
+  else if (imc < 30) classificacao = 'Sobrepeso';
+  else if (imc < 35) classificacao = 'Obesidade Grau I';
+  else classificacao = 'Obesidade Grau II';
+  return { valor: imc, classificacao };
+}
+
 export async function getDashboard(req: Request, res: Response): Promise<void> {
   const userId = (req as AuthedRequest).userId;
   const db = await readDatabase();
@@ -29,15 +48,21 @@ export async function getDashboard(req: Request, res: Response): Promise<void> {
   const workouts = db.workouts.filter((item) => item.userId === user.id);
   const progress = createProgress(workouts, user);
   const installedExtensions = db.userExtensions.filter((item) => item.userId === user.id).length;
+  const imc = calculateImc(user.perfil.peso, user.perfil.altura);
+  const treinosConcluidos = workouts.filter((item) => item.concluido).length;
+  const totalMinutos = workouts.reduce((acc, w) => acc + w.duracaoMin, 0);
 
   res.json({
-    saudacao: `Bom dia, ${user.nome}`,
+    saudacao: getGreeting(user.nome),
     metricas: {
       peso: user.perfil.peso,
       altura: user.perfil.altura,
       idade: user.perfil.idade,
       treinosCriados: workouts.length,
+      treinosConcluidos,
+      totalMinutos,
       extensoesAtivas: installedExtensions,
+      imc,
     },
     progressoDiario: progress,
   });

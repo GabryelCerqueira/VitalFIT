@@ -11,6 +11,11 @@ export function errorHandler(error: unknown, _req: Request, res: Response, _next
     return;
   }
 
+  if (error instanceof Error && error.message === 'AUTH_FORBIDDEN') {
+    res.status(403).json({ error: 'Acesso negado: privilégios de administrador necessários' });
+    return;
+  }
+
   console.error(error);
   res.status(500).json({ error: 'Erro interno do servidor' });
 }

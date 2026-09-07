@@ -5,12 +5,56 @@
       "nome": "Gabryel Gomes Cerqueira",
       "email": "gabryelgomes010@gmail.com",
       "senhaHash": "f25c527a3536f0d772b5bf7b2dde5fd6:0c2650602b507eef5b55cfb377938293053c538005869e9ee76381d9d5a5a3ffbc0025eb0d14edd4c7f7e849cf032d8cdb5eabfdadc23db3ddd458257640f7ec",
+      "role": "admin",
+      "plano": "elite",
       "perfil": {
         "peso": 79,
         "altura": 1.75,
         "idade": 19
       },
       "createdAt": "2026-08-11T22:31:59.029Z"
+    },
+    {
+      "id": "a402b7ae-c073-4c81-9423-357d44f89fa7",
+      "nome": "Usuario Teste",
+      "email": "teste@vitalfit.com",
+      "senhaHash": "ef3c0df09a4b7b19f3aa0eb2becc9154:afd3d421cb0754b49e5847ded1a2f995a44788ca979eb9cfca24931634801b8945ab869a7280500eff238b5f496fbbca2cf8082466412687c9d9f613c5a04af1",
+      "role": "user",
+      "plano": "free",
+      "perfil": {
+        "peso": 80,
+        "altura": 1.8,
+        "idade": 25
+      },
+      "createdAt": "2026-09-06T21:39:24.433Z"
+    },
+    {
+      "id": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "nome": "Leni Colete Novaes Gomes Cerqueira",
+      "email": "lenicerqueira@gmail.com",
+      "senhaHash": "3a8b55482ab31c49d65498f84a45182e:7ff53b062972a4c910aee96c2e4417d6ca16cac056b4c48540bdc8d2c036009e8f90e6d9e97ac39f2dae2590760e1cd5f0e630a89874a95edf902286fd021687",
+      "role": "user",
+      "plano": "elite",
+      "perfil": {
+        "peso": 68,
+        "altura": 1.69,
+        "idade": 47
+      },
+      "createdAt": "2026-09-06T22:01:01.450Z"
+    },
+    {
+      "id": "63a98dc2-4d98-4b5d-abe6-ab4f0647e8ea",
+      "nome": "Alexander Penha Cerqueira",
+      "email": "alexcorumba@gmail.com",
+      "senhaHash": "3beb76d4ae771e90305efbd1ba6d6d7b:fead10d4886d34511943c223785210c55754a41a4cae2e77cbee0d581a18acaae69cce37dbeb888101274a37d66c7884ca007c78df315a5a3dfb43bdab27fe8e",
+      "role": "user",
+      "plano": "elite",
+      "perfil": {
+        "peso": 126,
+        "altura": 1.7,
+        "idade": 50
+      },
+      "createdAt": "2026-09-06T22:04:38.736Z"
     }
   ],
   "sessions": [
@@ -38,18 +82,108 @@
       "token": "ab89f67a-d76a-4f5b-824e-829068661d5c",
       "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
       "createdAt": "2026-08-11T22:53:16.381Z"
+    },
+    {
+      "token": "b26587d8-e3a2-44f1-b39f-fa1df14f96ff",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-09-06T21:42:34.847Z"
+    },
+    {
+      "token": "5e4f2fae-99f1-48d6-a551-f2176fed217c",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "createdAt": "2026-09-06T22:01:17.990Z"
+    },
+    {
+      "token": "eb203ad5-1932-4db4-8cca-f9e30a4a33a0",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "createdAt": "2026-09-06T22:01:31.649Z"
+    },
+    {
+      "token": "f3ad8607-0d53-48e4-aa4c-cd7029681da7",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "createdAt": "2026-09-06T22:02:03.377Z"
+    },
+    {
+      "token": "cd8c5f5f-19be-403f-9fda-101236d13733",
+      "userId": "63a98dc2-4d98-4b5d-abe6-ab4f0647e8ea",
+      "createdAt": "2026-09-06T22:04:54.496Z"
+    },
+    {
+      "token": "d4d6ab5e-4b62-4437-bcff-3f703438951d",
+      "userId": "63a98dc2-4d98-4b5d-abe6-ab4f0647e8ea",
+      "createdAt": "2026-09-06T22:18:17.921Z"
     }
   ],
   "workouts": [
     {
-      "id": "41a313cb-3680-47ba-904b-d99e8cd94cb6",
+      "id": "workout-demo-1",
       "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
-      "titulo": "Segunda de Peito",
-      "descricao": "treinar",
-      "grupoMuscular": "Peito e Triceps",
-      "duracaoMin": 60,
+      "titulo": "Supino Reto + Halteres & Tríceps Corda",
+      "descricao": "4x10 supino reto pesado, seguido por 3x12 tríceps corda com drop-set final.",
+      "grupoMuscular": "Peito",
+      "duracaoMin": 50,
+      "intensidade": "intenso",
+      "concluido": false,
+      "publico": true,
+      "autorNome": "Gabryel Gomes Cerqueira",
+      "copias": 16,
+      "createdAt": "2026-09-05T14:00:00.000Z"
+    },
+    {
+      "id": "workout-demo-2",
+      "userId": "coach-system",
+      "titulo": "Treino Completo de Costas & Bíceps (Puxada Aberta)",
+      "descricao": "Puxada alta 4x10, Remada Curvada 4x8, Rosca Direta com barra W 3x12.",
+      "grupoMuscular": "Costas",
+      "duracaoMin": 55,
       "intensidade": "moderado",
-      "createdAt": "2026-08-11T22:48:49.321Z"
+      "concluido": false,
+      "publico": true,
+      "autorNome": "Lucas Coach",
+      "copias": 28,
+      "createdAt": "2026-09-04T10:00:00.000Z"
+    },
+    {
+      "id": "workout-demo-3",
+      "userId": "coach-system",
+      "titulo": "Leg Day Brutal: Agachamento Livre & Stiff",
+      "descricao": "Aquecimento 10min, Agachamento 5x8 progressivo, Leg Press 45 4x12, Stiff 4x10.",
+      "grupoMuscular": "Pernas",
+      "duracaoMin": 65,
+      "intensidade": "intenso",
+      "concluido": false,
+      "publico": true,
+      "autorNome": "Mariana Fitness",
+      "copias": 32,
+      "createdAt": "2026-09-03T16:00:00.000Z"
+    },
+    {
+      "id": "80706e21-64fe-4b97-ab09-034262540424",
+      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "titulo": "Supino Reto + Halteres & Tríceps Corda",
+      "descricao": "4x10 supino reto pesado, seguido por 3x12 tríceps corda com drop-set final.",
+      "grupoMuscular": "Peito",
+      "duracaoMin": 50,
+      "intensidade": "intenso",
+      "concluido": false,
+      "publico": false,
+      "autorNome": "Gabryel Gomes Cerqueira",
+      "copias": 0,
+      "createdAt": "2026-09-06T21:54:37.943Z"
+    },
+    {
+      "id": "0026cea0-f294-4eee-a8b6-af55e29e43a3",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "titulo": "Supino Reto + Halteres & Tríceps Corda",
+      "descricao": "4x10 supino reto pesado, seguido por 3x12 tríceps corda com drop-set final.",
+      "grupoMuscular": "Peito",
+      "duracaoMin": 50,
+      "intensidade": "intenso",
+      "concluido": false,
+      "publico": false,
+      "autorNome": "Leni Colete Novaes Gomes Cerqueira",
+      "copias": 0,
+      "createdAt": "2026-09-06T22:02:33.534Z"
     }
   ],
   "extensions": [
@@ -70,6 +204,18 @@
       "nome": "Macro Balancer",
       "descricao": "Calcula e acompanha macros com base nos seus objetivos.",
       "categoria": "Nutrição"
+    },
+    {
+      "id": "hiit-timer-pro",
+      "nome": "Temporizador HIIT & Tabata",
+      "descricao": "Controle sonoro e visual para treinos intervalados de alta intensidade.",
+      "categoria": "Treino"
+    },
+    {
+      "id": "posture-ai-coach",
+      "nome": "Posture & Mobility AI",
+      "descricao": "Guias de aquecimento e mobilidade articular personalizadas.",
+      "categoria": "Saúde"
     }
   ],
   "userExtensions": [
@@ -80,16 +226,299 @@
       "installedAt": "2026-08-11T22:48:00.090Z"
     },
     {
-      "id": "6de1d624-dd3c-46d3-b362-f1d6c4eedb92",
-      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
-      "extensionId": "sleep-monitor-plus",
-      "installedAt": "2026-08-11T22:48:01.125Z"
+      "id": "e0894782-45c9-4762-9200-6763f2f21518",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "extensionId": "water-tracker-pro",
+      "installedAt": "2026-09-06T22:03:03.055Z"
     },
     {
-      "id": "1a61beab-bd79-4c18-b6e4-28aa1aaac163",
-      "userId": "92a3df4c-1f34-45da-8d3c-f8d129ecaddf",
+      "id": "56c70590-ace2-46c5-b310-f9d92471f580",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "extensionId": "sleep-monitor-plus",
+      "installedAt": "2026-09-06T22:03:04.092Z"
+    },
+    {
+      "id": "1b182299-9edd-4f14-b796-1e1f3f77c23c",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
       "extensionId": "macro-balancer",
-      "installedAt": "2026-08-11T22:48:01.568Z"
+      "installedAt": "2026-09-06T22:03:05.766Z"
+    },
+    {
+      "id": "31a9bab7-5abf-4e6e-b379-0ae0a26eeb53",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "extensionId": "hiit-timer-pro",
+      "installedAt": "2026-09-06T22:03:06.684Z"
+    },
+    {
+      "id": "47df6bb8-739a-4b62-a5f2-bab465d9206d",
+      "userId": "0d07ca23-d675-40c8-8baf-aca0846b1fa7",
+      "extensionId": "posture-ai-coach",
+      "installedAt": "2026-09-06T22:03:07.669Z"
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-2",
+      "userId": "coach-system",
+      "autorNome": "Nutri Camila",
+      "conteudo": "Dica rápida para pré-treino: carboidratos de média absorção (como aveia ou banana) 45min antes ajudam a manter a glicemia estável sem causar letargia. Hidratem-se!",
+      "categoria": "Nutrição",
+      "likes": [
+        "92a3df4c-1f34-45da-8d3c-f8d129ecaddf"
+      ],
+      "comments": [],
+      "createdAt": "2026-09-06T16:00:00.000Z"
+    }
+  ],
+  "plans": [
+    {
+      "id": "free",
+      "nome": "Vital Free",
+      "precoMensal": 0,
+      "descricao: ": "O essencial para registrar suas atividades e manter a disciplina diária.",
+      "destaque": false,
+      "recursos": [
+        "Cadastro ilimitado de treinos",
+        "Acesso a extensões essenciais",
+        "Métricas de IMC e calorias em tempo real",
+        "Acesso ao Feed da Comunidade (posts e curtidas)"
+      ]
+    },
+    {
+      "id": "pro",
+      "nome": "Vital PRO",
+      "precoMensal": 29.9,
+      "descricao": "Mais poder para sua rotina, extensões ilimitadas e treinos compartilhados.",
+      "destaque": true,
+      "recursos": [
+        "Tudo do plano Free",
+        "Extensões e módulos ilimitados",
+        "Importar treinos da comunidade em 1 clique",
+        "Selo PRO vibrante na comunidade",
+        "Análise detalhada de evolução e consistência"
+      ]
+    },
+    {
+      "id": "elite",
+      "nome": "Vital ELITE VIP",
+      "precoMensal": 59.9,
+      "descricao": "Experiência de máxima performance com inteligência, exclusividade e suporte.",
+      "destaque": false,
+      "recursos": [
+        "Tudo do plano Vital PRO",
+        "Acesso antecipado a novos módulos inteligentes",
+        "Distintivo ELITE VIP dourado no perfil",
+        "Acesso a treinos de alto rendimento",
+        "Suporte prioritário e consultoria de recursos"
+      ]
+    }
+  ],
+  "alimentos": [
+    {
+      "id": "food-1",
+      "nome": "Peito de Frango Grelhado",
+      "categoria": "Proteínas",
+      "calorias": 165,
+      "proteinas": 31,
+      "carboidratos": 0,
+      "gorduras": 3.6,
+      "beneficio": "Altíssima concentração proteica e baixíssimo teor de gordura. Essencial para hipertrofia e definição."
+    },
+    {
+      "id": "food-2",
+      "nome": "Ovo Caipira Inteiro",
+      "categoria": "Proteínas",
+      "calorias": 143,
+      "proteinas": 13,
+      "carboidratos": 0.7,
+      "gorduras": 9.5,
+      "beneficio": "Proteína de referência biológica máxima, rico em colina para cognição e carotenoides."
+    },
+    {
+      "id": "food-3",
+      "nome": "Salmão Grelhado",
+      "categoria": "Proteínas",
+      "calorias": 208,
+      "proteinas": 22,
+      "carboidratos": 0,
+      "gorduras": 13,
+      "beneficio": "Rico em Ômega-3 anti-inflamatório, fortalece articulações e recuperação muscular."
+    },
+    {
+      "id": "food-4",
+      "nome": "Aveia em Flocos",
+      "categoria": "Carboidratos",
+      "calorias": 389,
+      "proteinas": 16.9,
+      "carboidratos": 66.3,
+      "gorduras": 6.9,
+      "beneficio": "Carboidrato complexo rico em beta-glucana. Liberação lenta de energia sem pico glicêmico."
+    },
+    {
+      "id": "food-5",
+      "nome": "Batata Doce Cozida",
+      "categoria": "Carboidratos",
+      "calorias": 86,
+      "proteinas": 1.6,
+      "carboidratos": 20.1,
+      "gorduras": 0.1,
+      "beneficio": "Energia sustentada, rica em vitamina A e potássio para evitar cãibras durante o treino."
+    },
+    {
+      "id": "food-6",
+      "nome": "Arroz Branco ou Integral",
+      "categoria": "Carboidratos",
+      "calorias": 130,
+      "proteinas": 2.7,
+      "carboidratos": 28,
+      "gorduras": 0.3,
+      "beneficio": "Excelente fonte de glicogênio muscular para consumo imediato no pós-treino com digestão suave."
+    },
+    {
+      "id": "food-7",
+      "nome": "Pasta de Amendoim Integral",
+      "categoria": "Gorduras Boas",
+      "calorias": 588,
+      "proteinas": 25,
+      "carboidratos": 20,
+      "gorduras": 50,
+      "beneficio": "Densidade calórica saudável, magnésio e gorduras monoinsaturadas para otimização hormonal."
+    },
+    {
+      "id": "food-8",
+      "nome": "Abacate Fresco",
+      "categoria": "Gorduras Boas",
+      "calorias": 160,
+      "proteinas": 2,
+      "carboidratos": 8.5,
+      "gorduras": 14.7,
+      "beneficio": "Gorduras saudáveis cardioprotetoras, glutationa antioxidante e fibras saciantes."
+    },
+    {
+      "id": "food-9",
+      "nome": "Banana Prata",
+      "categoria": "Frutas & Fibras",
+      "calorias": 89,
+      "proteinas": 1.1,
+      "carboidratos": 22.8,
+      "gorduras": 0.3,
+      "beneficio": "Combustível rápido pré-treino, rica em potássio e vitaminas do complexo B."
+    },
+    {
+      "id": "food-10",
+      "nome": "Whey Protein Isolado / Concentrado",
+      "categoria": "Snacks & Suplementos",
+      "calorias": 390,
+      "proteinas": 80,
+      "carboidratos": 4,
+      "gorduras": 3,
+      "beneficio": "Rapidez de absorção de aminoácidos essenciais e BCAA para síntese proteica pós-treino."
+    },
+    {
+      "id": "food-11",
+      "nome": "Castanha-do-Pará",
+      "categoria": "Gorduras Boas",
+      "calorias": 656,
+      "proteinas": 14.3,
+      "carboidratos": 12.3,
+      "gorduras": 66.4,
+      "beneficio": "Maior fonte natural de selênio do planeta, essencial para tireoide e imunidade celular."
+    }
+  ],
+  "dietas": [
+    {
+      "id": "dieta-demo-1",
+      "userId": "nutri-camila",
+      "autorNome": "Nutri Camila Pires",
+      "titulo": "Dieta 24h Cutting & Definição Limpa (2.100 kcal)",
+      "objetivo": "Definição / Cutting",
+      "caloriasTotais": 2100,
+      "proteinasTotais": 175,
+      "refeicoes": [
+        {
+          "nome": "Café da Manhã",
+          "horario": "07:30",
+          "itens": "3 ovos mexidos + 2 fatias de pão 100% integral + café preto sem açúcar",
+          "caloriasAprox": 380
+        },
+        {
+          "nome": "Almoço",
+          "horario": "12:30",
+          "itens": "150g peito de frango grelhado + 120g arroz integral + salada verde com azeite extravirgem",
+          "caloriasAprox": 550
+        },
+        {
+          "nome": "Lanche Pré-Treino",
+          "horario": "16:00",
+          "itens": "1 scoop de Whey Protein + 1 banana média + 30g de aveia em flocos com água",
+          "caloriasAprox": 360
+        },
+        {
+          "nome": "Jantar",
+          "horario": "19:30",
+          "itens": "150g filé de tilápia ou frango + 150g batata doce cozida + brócolis no vapor",
+          "caloriasAprox": 480
+        },
+        {
+          "nome": "Ceia",
+          "horario": "22:00",
+          "itens": "15g pasta de amendoim ou 1 pote de iogurte natural desnatado",
+          "caloriasAprox": 130
+        }
+      ],
+      "publica": true,
+      "copias": 42,
+      "createdAt": "2026-09-04T12:00:00.000Z"
+    },
+    {
+      "id": "dieta-demo-2",
+      "userId": "coach-lucas",
+      "autorNome": "Coach Lucas Silva",
+      "titulo": "Dieta 24h Bulking Limpo & Hipertrofia (3.100 kcal)",
+      "objetivo": "Hipertrofia",
+      "caloriasTotais": 3100,
+      "proteinasTotais": 210,
+      "refeicoes": [
+        {
+          "nome": "Café da Manhã",
+          "horario": "07:00",
+          "itens": "4 ovos inteiros + 60g aveia com 200ml leite desnatado + 1 maçã picada com canela",
+          "caloriasAprox": 620
+        },
+        {
+          "nome": "Lanche da Manhã",
+          "horario": "10:00",
+          "itens": "Shake: 1 scoop Whey + 30g pasta de amendoim + 1 banana batida",
+          "caloriasAprox": 450
+        },
+        {
+          "nome": "Almoço",
+          "horario": "13:00",
+          "itens": "180g patinho moído ou frango + 200g arroz branco + 100g feijão + salada colorida",
+          "caloriasAprox": 750
+        },
+        {
+          "nome": "Lanche Pré-Treino",
+          "horario": "16:30",
+          "itens": "200g batata doce cozida + 120g peito de frango desfiado",
+          "caloriasAprox": 420
+        },
+        {
+          "nome": "Jantar",
+          "horario": "20:00",
+          "itens": "180g salmão ou carne magra + 200g mandioca ou arroz + legumes grelhados",
+          "caloriasAprox": 680
+        },
+        {
+          "nome": "Ceia",
+          "horario": "22:30",
+          "itens": "2 ovos cozidos ou 30g de castanhas variadas",
+          "caloriasAprox": 180
+        }
+      ],
+      "publica": true,
+      "copias": 68,
+      "createdAt": "2026-09-03T15:00:00.000Z"
     }
   ]
 }

@@ -21,6 +21,8 @@ export async function register(req, res) {
         nome: payload.nome,
         email,
         senhaHash: createPasswordHash(payload.senha),
+        role: 'user',
+        plano: 'free',
         perfil: payload.perfil,
         createdAt: new Date().toISOString(),
     };
@@ -51,8 +53,52 @@ export async function login(req, res) {
             id: user.id,
             nome: user.nome,
             email: user.email,
+            role: user.role ?? 'user',
+            plano: user.plano ?? 'free',
             perfil: user.perfil,
         },
     });
+}
+export async function me(req, res) {
+    const userId = req.userId;
+    const db = await readDatabase();
+    const user = db.users.find((item) => item.id === userId);
+    if (!user) {
+        res.status(404).json({ error: 'Usuário não encontrado' });
+        return;
+    }
+    res.json({
+        id: user.id,
+        nome: user.nome,
+        email: user.email,
+        role: user.role ?? 'user',
+        plano: user.plano ?? 'free',
+        perfil: user.perfil,
+    });
+}
+export async function changePassword(req, res) {
+    const userId = req.userId;
+    const { senhaAtual, novaSenha } = req.body;
+    if (!senhaAtual || !novaSenha) {
+        res.status(400).json({ error: 'Senha atual e nova senha são obrigatórias' });
+        return;
+    }
+    if (typeof novaSenha !== 'string' || novaSenha.length < 6) {
+        res.status(400).json({ error: 'A nova senha deve ter no mínimo 6 caracteres' });
+        return;
+    }
+    const db = await readDatabase();
+    const user = db.users.find((item) => item.id === userId);
+    if (!user) {
+        res.status(404).json({ error: 'Usuário não encontrado' });
+        return;
+    }
+    if (!verifyPassword(senhaAtual, user.senhaHash)) {
+        res.status(400).json({ error: 'A senha atual está incorreta' });
+        return;
+    }
+    user.senhaHash = createPasswordHash(novaSenha);
+    await writeDatabase(db);
+    res.json({ message: 'Senha alterada com sucesso!' });
 }
 //# sourceMappingURL=auth.controller.js.map

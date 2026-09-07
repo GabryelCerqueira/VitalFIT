@@ -15,4 +15,14 @@ export async function requireAuth(req, _res, next) {
     req.userId = session.userId;
     next();
 }
+export async function requireAdmin(req, _res, next) {
+    const userId = req.userId;
+    const db = await readDatabase();
+    const user = db.users.find((u) => u.id === userId);
+    if (!user || user.role !== 'admin') {
+        next(new Error('AUTH_FORBIDDEN'));
+        return;
+    }
+    next();
+}
 //# sourceMappingURL=auth.middleware.js.map
