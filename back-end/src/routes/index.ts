@@ -36,7 +36,16 @@ import { requireAdmin, requireAuth } from '../middlewares/auth.middleware.js';
 
 export const router = Router();
 
-// Health Check
+// Health & Root
+router.get('/', (_req, res) => {
+  res.json({
+    app: 'VitalFIT API',
+    status: 'online',
+    message: 'Backend rodando perfeitamente!',
+    timestamp: new Date().toISOString(),
+  });
+});
+
 router.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
