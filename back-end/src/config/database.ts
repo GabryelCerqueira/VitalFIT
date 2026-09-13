@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import type { Collection } from 'mongodb';
 import { DB_PATH } from './env.js';
+import { getMongoCollections, isMongoConfigured } from './mongo.js';
 import type { Alimento, Database, Dieta24h, SubscriptionPlan } from '../types/domain.js';
 
 export const defaultPlans: SubscriptionPlan[] = [
@@ -319,6 +321,38 @@ const defaultDb: Database = {
   dietas: defaultDietas,
 };
 
+function cleanDocs<T>(docs: any[]): T[] {
+  return docs.map(({ _id, ...rest }) => rest as T);
+}
+
+async function syncCollection<T extends Record<string, any>>(
+  col: Collection<any>,
+  items: T[],
+  idKey: string = 'id',
+): Promise<void> {
+  if (!items || items.length === 0) {
+    await col.deleteMany({});
+    return;
+  }
+
+  const ids = items.map((it) => it[idKey]).filter(Boolean);
+  const operations = items.map((item) => ({
+    replaceOne: {
+      filter: { [idKey]: item[idKey] },
+      replacement: item,
+      upsert: true,
+    },
+  }));
+
+  if (operations.length > 0) {
+    await col.bulkWrite(operations);
+  }
+
+  if (ids.length > 0) {
+    await col.deleteMany({ [idKey]: { $nin: ids } });
+  }
+}
+
 export async function ensureDatabase(): Promise<void> {
   const dirPath = path.dirname(DB_PATH);
   await fs.mkdir(dirPath, { recursive: true });
@@ -327,9 +361,91 @@ export async function ensureDatabase(): Promise<void> {
   } catch {
     await fs.writeFile(DB_PATH, JSON.stringify(defaultDb, null, 2), 'utf8');
   }
+
+  if (isMongoConfigured()) {
+    try {
+      const cols = await getMongoCollections();
+      const usersCount = await cols.users.countDocuments();
+      if (usersCount === 0) {
+        console.log('🔄 Inicializando dados no MongoDB a partir do backup local...');
+        let initialData: Database = defaultDb;
+        try {
+          const content = await fs.readFile(DB_PATH, 'utf8');
+          const parsed = JSON.parse(content) as Database;
+          if (parsed && Array.isArray(parsed.users) && parsed.users.length > 0) {
+            initialData = parsed;
+          }
+        } catch {
+          // fallback para defaultDb
+        }
+
+        if (initialData.users?.length) await cols.users.insertMany(initialData.users);
+        if (initialData.sessions?.length) await cols.sessions.insertMany(initialData.sessions);
+        if (initialData.workouts?.length) await cols.workouts.insertMany(initialData.workouts);
+        if (initialData.extensions?.length) await cols.extensions.insertMany(initialData.extensions);
+        if (initialData.userExtensions?.length) await cols.userExtensions.insertMany(initialData.userExtensions);
+        if (initialData.posts?.length) await cols.posts.insertMany(initialData.posts);
+        if (initialData.plans?.length) await cols.plans.insertMany(initialData.plans);
+        if (initialData.alimentos?.length) await cols.alimentos.insertMany(initialData.alimentos);
+        if (initialData.dietas?.length) await cols.dietas.insertMany(initialData.dietas);
+
+        console.log('✔ Dados migrados com sucesso para as coleções do MongoDB!');
+      }
+    } catch (err) {
+      console.error('⚠ Aviso: Não foi possível conectar ao MongoDB na inicialização:', err);
+    }
+  }
 }
 
 export async function readDatabase(): Promise<Database> {
+  if (isMongoConfigured()) {
+    try {
+      const cols = await getMongoCollections();
+      const [
+        users,
+        sessions,
+        workouts,
+        extensions,
+        userExtensions,
+        posts,
+        plans,
+        alimentos,
+        dietas,
+      ] = await Promise.all([
+        cols.users.find().toArray(),
+        cols.sessions.find().toArray(),
+        cols.workouts.find().toArray(),
+        cols.extensions.find().toArray(),
+        cols.userExtensions.find().toArray(),
+        cols.posts.find().toArray(),
+        cols.plans.find().toArray(),
+        cols.alimentos.find().toArray(),
+        cols.dietas.find().toArray(),
+      ]);
+
+      const db: Database = {
+        users: cleanDocs(users),
+        sessions: cleanDocs(sessions),
+        workouts: cleanDocs(workouts),
+        extensions: cleanDocs(extensions),
+        userExtensions: cleanDocs(userExtensions),
+        posts: cleanDocs(posts),
+        plans: cleanDocs(plans),
+        alimentos: cleanDocs(alimentos),
+        dietas: cleanDocs(dietas),
+      };
+
+      if (!db.posts || db.posts.length === 0) db.posts = defaultDb.posts;
+      if (!db.plans || db.plans.length === 0) db.plans = defaultPlans;
+      if (!db.alimentos || db.alimentos.length === 0) db.alimentos = defaultAlimentos;
+      if (!db.dietas || db.dietas.length === 0) db.dietas = defaultDietas;
+
+      return db;
+    } catch (err) {
+      console.error('⚠ Falha ao ler do MongoDB, recorrendo ao database.json local:', err);
+    }
+  }
+
   const content = await fs.readFile(DB_PATH, 'utf8');
   const db = JSON.parse(content) as Database;
   if (!db.posts) db.posts = defaultDb.posts;
@@ -340,5 +456,31 @@ export async function readDatabase(): Promise<Database> {
 }
 
 export async function writeDatabase(db: Database): Promise<void> {
-  await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf8');
+  // Salva no arquivo local (backup e cache)
+  try {
+    await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2), 'utf8');
+  } catch {
+    // em ambientes onde o disco for somente leitura (serverless/ephemeral), ignora
+  }
+
+  if (isMongoConfigured()) {
+    try {
+      const cols = await getMongoCollections();
+      await Promise.all([
+        syncCollection(cols.users, db.users, 'id'),
+        syncCollection(cols.sessions, db.sessions, 'token'),
+        syncCollection(cols.workouts, db.workouts, 'id'),
+        syncCollection(cols.extensions, db.extensions, 'id'),
+        syncCollection(cols.userExtensions, db.userExtensions, 'id'),
+        syncCollection(cols.posts, db.posts, 'id'),
+        syncCollection(cols.plans, db.plans, 'id'),
+        syncCollection(cols.alimentos, db.alimentos, 'id'),
+        syncCollection(cols.dietas, db.dietas, 'id'),
+      ]);
+    } catch (err) {
+      console.error('⚠ Erro ao persistir dados no MongoDB:', err);
+      throw err;
+    }
+  }
 }
+

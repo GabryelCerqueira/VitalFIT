@@ -34,20 +34,34 @@ import {
 } from '../modules/nutrition/nutrition.controller.js';
 import { requireAdmin, requireAuth } from '../middlewares/auth.middleware.js';
 
+import { pingMongo, isMongoConfigured } from '../config/mongo.js';
+
 export const router = Router();
 
 // Health & Root
-router.get('/', (_req, res) => {
+router.get('/', async (_req, res) => {
+  const mongoStatus = await pingMongo();
   res.json({
     app: 'VitalFIT API',
     status: 'online',
+    database: mongoStatus.ok
+      ? 'MongoDB (Conectado)'
+      : isMongoConfigured()
+        ? 'MongoDB (Erro de conexão)'
+        : 'Local JSON (database.json)',
+    mongodb: mongoStatus,
     message: 'Backend rodando perfeitamente!',
     timestamp: new Date().toISOString(),
   });
 });
 
-router.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+router.get('/health', async (_req, res) => {
+  const mongoStatus = await pingMongo();
+  res.json({
+    status: 'ok',
+    database: mongoStatus.ok ? 'mongodb' : 'json',
+    mongodbOk: mongoStatus.ok,
+  });
 });
 
 // Auth
